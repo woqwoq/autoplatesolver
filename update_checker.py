@@ -47,8 +47,4 @@ def update_recent_files(folder):
         result = update_file_list(folder)
         if result != None:
             most_recent_file = result
-            print(f"#TODO Solving {result}")
-
-
-folder = 'example_files/'
-update_recent_files(folder)
+            print(f"#TODO Solving {result}", flush=True)
