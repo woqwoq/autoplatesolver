@@ -1,6 +1,6 @@
-import threading
-import update_checker
 import queue_handler
+import sys
+import select
 from queue import Queue
 
 memory ={
@@ -54,14 +54,16 @@ def command_switcher(args):
     else:
         print(f"Error: Command '{args[0]}' does not exist or did not receive enought arguments")
         
-        
+
 def start_cli(queue: Queue):
-    while(True):
-        if queue.empty():
-            command = input(">>").split(" ")
-            command_switcher(command)
-        else:
+    while True:
+        while not queue.empty():                              #checking the q first, not sure about the efficiency lol
             queue_handler.handle_queue(queue)
+
+        rlist, _, _ = select.select([sys.stdin], [], [], 0.1) #If sys.stdin has some stuff to be read in, we write sys.stdin in the rlist
+        if rlist:                                             #else, we give 0.1 timeout 
+            command = input(">> ").split(" ")                 #if rlist is non-empty, then we run the command contained in sys.stdin
+            command_switcher(command)
 
 
 

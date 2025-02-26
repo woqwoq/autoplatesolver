@@ -1,4 +1,3 @@
-import time
 from queue import Queue
 
 SLEEP_BETWEEN_UPDATES = 10
