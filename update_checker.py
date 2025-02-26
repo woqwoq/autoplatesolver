@@ -42,9 +42,9 @@ def update_file_list(folder):
         return None
         
 
-def update_recent_files(folder):
+def update_recent_files(folder, queue: list):
     while(True):
         result = update_file_list(folder)
         if result != None:
             most_recent_file = result
-            print(f"#TODO Solving {result}", flush=True)
+            queue.append(most_recent_file)

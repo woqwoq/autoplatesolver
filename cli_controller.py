@@ -1,8 +1,6 @@
 import threading
 import update_checker
 
-folder = 'example_files/'
-
 memory ={
     "ra"    : 0,
     "dec"   : 0,
@@ -53,16 +51,12 @@ def command_switcher(args):
                 print_command_error(args[0])
     else:
         print(f'Error: Command {args[0]} does not exist or did not receive enought arguments')
-
-def main():
+        
+        
+def start_cli(queue: list):
     while(True):
         command = input(">>").split(" ")
         command_switcher(command)
 
 
 
-if __name__ == "__main__":
-    cli_controller = threading.Thread(target=main)
-    cli_controller.start()
-    file_updater = threading.Thread(target=update_checker.update_recent_files, args=(folder, ), daemon=True)
-    file_updater.start()
