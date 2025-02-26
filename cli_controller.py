@@ -1,5 +1,7 @@
 import threading
 import update_checker
+import queue_handler
+from queue import Queue
 
 memory ={
     "ra"    : 0,
@@ -50,13 +52,16 @@ def command_switcher(args):
             if(return_val == -1):
                 print_command_error(args[0])
     else:
-        print(f'Error: Command {args[0]} does not exist or did not receive enought arguments')
+        print(f"Error: Command '{args[0]}' does not exist or did not receive enought arguments")
         
         
-def start_cli(queue: list):
+def start_cli(queue: Queue):
     while(True):
-        command = input(">>").split(" ")
-        command_switcher(command)
+        if queue.empty():
+            command = input(">>").split(" ")
+            command_switcher(command)
+        else:
+            queue_handler.handle_queue(queue)
 
 
 

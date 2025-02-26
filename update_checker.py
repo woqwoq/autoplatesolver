@@ -1,5 +1,6 @@
 import os
 import time
+from queue import Queue
 
 SLEEP_BETWEEN_UPDATES = 10
 
@@ -42,9 +43,9 @@ def update_file_list(folder):
         return None
         
 
-def update_recent_files(folder, queue: list):
+def update_recent_files(folder, queue: Queue):
     while(True):
         result = update_file_list(folder)
         if result != None:
             most_recent_file = result
-            queue.append(most_recent_file)
+            queue.put(most_recent_file)
