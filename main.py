@@ -1,11 +1,10 @@
 from cli_controller import start_cli
 from update_checker import update_recent_files
+from config_parser import get_input_loc
 from queue import Queue
 import threading
 
-INPUT_FOLDER = "example_files/"
-OUTPUT_FOLDER = ""
-PATH_TO_ASTAP = "C:\\Program Files\\astap\\astap.exe"
+INPUT_FOLDER = get_input_loc()
 
 def start():
     queue = Queue()

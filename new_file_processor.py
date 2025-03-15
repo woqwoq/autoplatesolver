@@ -1,9 +1,10 @@
+import config_parser
 import astap_caller
 import ini_parser
 import file_mover
 import time
 
-ATLAS_LOC = "C:\\Users\\admin\\AppData\\Local\\skychart\\pictures"
+ATLAS_LOC = config_parser.get_atlas_loc()
 SOLVE_TIME = 6
 
 def change_extension(file: str, new_ext: str):

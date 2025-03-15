@@ -1,7 +1,8 @@
+import config_parser
 import subprocess
 import os
 
-PATH_TO_ASTAP = r"C:\Program Files\astap\astap.exe"
+PATH_TO_ASTAP = config_parser.get_astap_loc()
 
 def dec_to_spd(dec):
     return int(dec) + 90
