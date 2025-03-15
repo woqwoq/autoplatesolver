@@ -3,8 +3,9 @@ from update_checker import update_recent_files
 from queue import Queue
 import threading
 
-INPUT_FOLDER = 'example_files/'
-OUTPUT_FOLDER = ''
+INPUT_FOLDER = "example_files/"
+OUTPUT_FOLDER = ""
+PATH_TO_ASTAP = "C:\\Program Files\\astap\\astap.exe"
 
 def start():
     queue = Queue()
